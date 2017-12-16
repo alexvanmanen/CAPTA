@@ -27,21 +27,20 @@ public class JavaClassLoader  {
 		return null;
 	}
 	
-	public List<Class> getClasses() throws ClassNotFoundException {
+	public List<Class> getClasses(String directory, String classpath) throws ClassNotFoundException {
 		List<Class> classes = new ArrayList<Class>();
-		String directory = "/Users/alexvanmanen/Documents/workspace/MasterThesis/bin/opdracht1/";
+		
 		File root = new File(directory);
 		File[] files = root.listFiles();
 		
-		directory = directory.replace("opdracht1/", "");
+		directory = directory.replace(classpath+"/", "");
 
 		for (File f : files) {
 			if (f.isFile() && f.getName().endsWith(".class")) {
 				String className = f.getName().replaceAll(".class", "");
-				className = "opdracht1." + className;
+				className = classpath+"." + className;
 				Class c = load(directory, className);
 				classes.add(c);
-				System.out.println("There is: " + c);
 			}
 		}
 		return classes;

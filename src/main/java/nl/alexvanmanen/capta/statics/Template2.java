@@ -1,0 +1,45 @@
+package nl.alexvanmanen.capta.statics;
+
+import java.io.FileNotFoundException;
+import java.util.List;
+
+import com.github.javaparser.ast.CompilationUnit;
+
+import junit.framework.Assert;
+import nl.alexvanmanen.capta.Evaluator;
+import nl.alexvanmanen.capta.helper.ADLReader;
+import nl.alexvanmanen.capta.model.Assignment;
+import nl.alexvanmanen.capta.model.AssignmentOutput;
+import nl.alexvanmanen.capta.model.Criteria;
+import nl.alexvanmanen.capta.model.Evaluation;
+import nl.alexvanmanen.capta.model.Exp;
+import nl.alexvanmanen.capta.visitor.BinaryExpressionVisitor;
+
+public class Template2 {
+
+	private String adlFile;
+	private AssignmentOutput assignmentOutput;
+
+	public Template2(String adlFile, AssignmentOutput assignmentOutput) {
+		this.adlFile = adlFile;
+		this.assignmentOutput = assignmentOutput;
+	}
+
+	public List<Evaluation> evaluate() {
+			ADLReader reader = new ADLReader();
+			List<Exp> list = reader.readFile(adlFile);
+
+			Assignment assignment = new Assignment();
+			for(Exp exp: list){
+				Criteria criteria = new Criteria();
+
+				criteria.visitor = new BinaryExpressionVisitor(exp);
+				criteria.description = "There is a expression " + exp+ "\n";
+				criteria.points = 2;
+				assignment.add(criteria);
+			}
+			
+			List<Evaluation> actual = new Evaluator().evaluate(assignment, assignmentOutput);
+			return actual;
+		}
+}

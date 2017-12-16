@@ -1,0 +1,5 @@
+INPUT != 50 #Het getal is ongelijk aan 50
+INPUT > 10 #Het getal is groter dan 10
+INPUT > 1 AND INPUT < 9 #Het getal is groter dan 1 en kleiner dan 9
+INPUT % 3 == 0 #Het getal is deelbaar door 3 of 4
+INPUT % 4 == 0 #Het getal is deelbaar door 3 of 4
