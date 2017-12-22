@@ -1,9 +1,8 @@
 package nl.alexvanmanen.capta.statics;
 
-import java.io.FileNotFoundException;
-
 import com.github.javaparser.ast.CompilationUnit;
 
+import nl.alexvanmanen.capta.model.AssignmentOutput;
 import nl.alexvanmanen.capta.model.Criteria;
 import nl.alexvanmanen.capta.visitor.ConsoleVisitor;
 import nl.alexvanmanen.capta.visitor.MethodVisitor;
@@ -22,8 +21,29 @@ public class Template1 {
 	public Template1(CompilationUnit compilationUnit) {
 		this.compilationUnit = compilationUnit;
 	}
+	
+	public Template1(AssignmentOutput assignmentOutput) {
+		this(assignmentOutput.getCompilationUnit());
+	}
 
-	public String evaluate() throws FileNotFoundException {
+	public static void main(String[] args){
+		
+		
+		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/assignments/Hello.java");
+		Template1 template1Statically = new Template1(assignmentOutput);
+		String className = "Hello";
+		String methodName = "main";
+		template1Statically.setSignature(className, methodName);
+		template1Statically.setVariable("String", "name");
+		template1Statically.setWhatIsBeingPrinted("Hello");
+
+		String result = template1Statically.evaluate();
+		System.out.println(result);
+
+	}
+	
+	
+	public String evaluate()  {
 		// prints the resulting compilation unit to default system output
 		System.out.println(compilationUnit.toString());
 

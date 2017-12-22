@@ -15,7 +15,6 @@ public class FileReading {
 			File file = new File(fileName);
 			FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			StringBuffer stringBuffer = new StringBuffer();
 			String line;
 			while ((line = bufferedReader.readLine()) != null) {
 				list.add(line);
@@ -26,5 +25,20 @@ public class FileReading {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public List<String> readDirectory(String directoryName){
+		List<String> list = new ArrayList<String>();
+		File directory = new File(directoryName);
+		
+		File[] listOfFiles = directory.listFiles();
+
+		for (File file : listOfFiles) {
+			if (file.isDirectory()) {
+				list.add(file.getName());
+			}
+		}
+
+		return list;
 	}
 }

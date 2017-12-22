@@ -3,11 +3,15 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Console {
 
-	public String getConsoleOutput(String input) throws ClassNotFoundException, NoSuchMethodException,
-			InstantiationException, IllegalAccessException, InvocationTargetException {
+	public String getConsoleOutput(String input)  {
 		String content = "";
-		for (MethodExecutor me : new MethodsRetriever().getExecutors()) {
-			content += new TestHelper().getConsoleOutput(me, input);
+		try {
+			for (MethodExecutor me : new MethodsRetriever().getExecutors()) {
+				content += new TestHelper().getConsoleOutput(me, input);
+			}
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
+				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			e.printStackTrace();
 		}
 		return content;
 	}

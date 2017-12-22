@@ -13,8 +13,6 @@ public class TestTemplate1 extends TestCase {
 
 	public void test() throws FileNotFoundException {
 
-
-		
 		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/assignments/Hello.java");
 		Template1 template1Statically = new Template1(assignmentOutput.getCompilationUnit());
 		String className = "Hello";

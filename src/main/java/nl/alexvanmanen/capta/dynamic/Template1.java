@@ -15,7 +15,7 @@ public class Template1 {
 
 	}
 
-	public String start() throws ClassNotFoundException {
+	public String start() {
 
 		String feedback = "";
 
@@ -36,23 +36,30 @@ public class Template1 {
 
 		JavaClassLoader jcl = new JavaClassLoader();
 
-		List<Class> classes = jcl.getClasses("./cases/assignments/", "assignments");
-		for (Class c : classes) {
-			if (c.getName().contains("assignments.Hello")) {
-				list.add(criteria1);
-				Method main = new MethodsRetriever().getMethod(c, "main");
-				if (main != null) {
-					list.add(criteria2);
+		
+		try {
+			List<Class> classes = jcl.getClasses("./cases/assignments/", "assignments");
+			for (Class c : classes) {
+				if (c.getName().contains("assignments.Hello")) {
+					list.add(criteria1);
+					Method main = new MethodsRetriever().getMethod(c, "main");
+					if (main != null) {
+						list.add(criteria2);
 
-					MethodExecutor methodExecutor = new MethodExecutor(c, main);
-					String consoleOutput = new TestHelper().getConsoleOutput(methodExecutor);
+						MethodExecutor methodExecutor = new MethodExecutor(c, main);
+						String consoleOutput = new TestHelper().getConsoleOutput(methodExecutor);
 
-					if (consoleOutput.contains("Hello")) {
-						list.add(criteria3);
+						if (consoleOutput.contains("Hello")) {
+							list.add(criteria3);
+						}
 					}
 				}
 			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 
 		
 		for (Criteria s : list) {

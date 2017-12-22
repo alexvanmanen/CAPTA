@@ -11,8 +11,7 @@ public class Template2 {
 	}
 
 	//@Test
-	public static void main(String[] args) throws IOException, InstantiationException, IllegalAccessException, IllegalArgumentException,
-			InvocationTargetException, ClassNotFoundException, NoSuchMethodException, SecurityException {
+	public static void main(String[] args)  {
 
 		//INPUT > 10 #Het getal is groter dan 10
 		Input i1 = new Input("10","Het getal is groter dan 10.",false);
@@ -41,7 +40,6 @@ public class Template2 {
 			System.out.println("assert: "+ (input.expected == actual));
 			
 			if(input.expected){
-				
 				System.out.println(content.contains(input.output.toString()));
 			} else  {
 				System.out.println(!content.contains(input.output.toString()));
