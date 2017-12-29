@@ -14,7 +14,7 @@ public class TestTemplate1 extends TestCase {
 	public void test() throws FileNotFoundException {
 
 		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/assignments/Hello.java");
-		Template1 template1Statically = new Template1(assignmentOutput.getCompilationUnit());
+		Template1 template1Statically = new Template1(assignmentOutput.getCompilationUnits());
 		String className = "Hello";
 		String methodName = "main";
 		template1Statically.setSignature(className, methodName);

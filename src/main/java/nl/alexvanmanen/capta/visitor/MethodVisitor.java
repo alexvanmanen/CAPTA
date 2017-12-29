@@ -18,7 +18,7 @@ public class MethodVisitor extends AbstractVisitor {
 	
 	@Override
 	public void visit(MethodDeclaration n, Void arg) {
-		found = n.getName().toString().equalsIgnoreCase(methodName);
+		found = n.getNameAsString().equalsIgnoreCase(methodName);
 		super.visit(n, arg);
 	}
 

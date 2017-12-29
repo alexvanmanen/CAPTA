@@ -3,6 +3,8 @@ package nl.alexvanmanen.capta;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.javaparser.ast.CompilationUnit;
+
 import nl.alexvanmanen.capta.model.Assignment;
 import nl.alexvanmanen.capta.model.AssignmentOutput;
 import nl.alexvanmanen.capta.model.Criteria;
@@ -21,9 +23,11 @@ public class Evaluator {
 	
 	public Evaluation evaluate(Criteria criteria, AssignmentOutput assignmentOutput){
 		//StaticEvaluator (criteria, assignmentOutput);
-		assignmentOutput.getCompilationUnit().accept(criteria.visitor, null);
-		if (criteria.visitor.isFound()) {
-			return new Evaluation(criteria,true);
+		for(CompilationUnit cu: assignmentOutput.getCompilationUnits()){
+			cu.accept(criteria.visitor, null);
+			if (criteria.visitor.isFound()) {
+				return new Evaluation(criteria,true);
+			}	
 		}
 		return new Evaluation(criteria,false);
 	}

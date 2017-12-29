@@ -20,4 +20,15 @@ public class TestJavaClassLoader extends TestCase {
 			System.out.println(c.getName());
 		}
 	}
+	
+	public void testGetClasses2() throws ClassNotFoundException{
+		boolean actual = false;
+		List<Class> classes = new JavaClassLoader().getClasses("/Users/alexvanmanen/Git/CAPTA/target/classes/");
+		for(Class c: classes){
+			if(c.getName().equalsIgnoreCase("nl.alexvanmanen.capta.reflection.JavaClassLoader")){
+				actual = true;
+			}
+		}
+		assertTrue("There is not a class JavaClassLoader", actual);
+	}
 }

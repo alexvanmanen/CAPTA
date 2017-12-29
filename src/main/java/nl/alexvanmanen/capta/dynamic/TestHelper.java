@@ -33,7 +33,6 @@ public class TestHelper {
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
 		System.setOut(new PrintStream(byteArrayOutputStream));
-		
 		execute.execute();
 
 		String content = new String(byteArrayOutputStream.toByteArray(), StandardCharsets.UTF_8);

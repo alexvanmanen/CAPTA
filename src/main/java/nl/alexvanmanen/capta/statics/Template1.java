@@ -1,9 +1,13 @@
 package nl.alexvanmanen.capta.statics;
 
+import java.util.List;
+
 import com.github.javaparser.ast.CompilationUnit;
 
 import nl.alexvanmanen.capta.model.AssignmentOutput;
 import nl.alexvanmanen.capta.model.Criteria;
+import nl.alexvanmanen.capta.model.Evaluation;
+import nl.alexvanmanen.capta.model.Evaluations;
 import nl.alexvanmanen.capta.visitor.ConsoleVisitor;
 import nl.alexvanmanen.capta.visitor.MethodVisitor;
 import nl.alexvanmanen.capta.visitor.VariableVisitor;
@@ -12,18 +16,19 @@ public class Template1 {
 
 	private String className;
 	private String methodName;
-	CompilationUnit compilationUnit;
+	List<CompilationUnit> compilationUnits;
 
 	private String type;
 	private String name;
 	private String printed;
+	private Evaluations evaluations = new Evaluations();
 
-	public Template1(CompilationUnit compilationUnit) {
-		this.compilationUnit = compilationUnit;
+	public Template1(List<CompilationUnit> list) {
+		this.compilationUnits = list;
 	}
 	
 	public Template1(AssignmentOutput assignmentOutput) {
-		this(assignmentOutput.getCompilationUnit());
+		this(assignmentOutput.getCompilationUnits());
 	}
 
 	public static void main(String[] args){
@@ -44,9 +49,7 @@ public class Template1 {
 	
 	
 	public String evaluate()  {
-		// prints the resulting compilation unit to default system output
-		System.out.println(compilationUnit.toString());
-
+		
 		String feedback = "";
 
 		Criteria criteria1 = new Criteria();
@@ -63,17 +66,22 @@ public class Template1 {
 		s3.visitor = new ConsoleVisitor(printed);
 		s3.description = "+2 " + printed + " is being printed\n";
 		s3.points = 2;
-
+		
+		
+		
 		Criteria[] list = { criteria1, criteria2, s3 };
 		return evaluate(feedback, list);
 
 	}
 
 	private String evaluate(String feedback, Criteria[] list) {
-		for (Criteria s : list) {
-			compilationUnit.accept(s.visitor, null);
-			if (s.visitor.isFound()) {
-				feedback += s.description;
+		for(CompilationUnit compilationUnit: compilationUnits){
+			for (Criteria criteria : list) {
+				compilationUnit.accept(criteria.visitor, null);
+				if (criteria.visitor.isFound()) {
+					evaluations.add(new Evaluation(criteria, true));
+					feedback += criteria.description;
+				}
 			}
 		}
 		return feedback;
@@ -94,4 +102,14 @@ public class Template1 {
 		this.printed = printed;
 	}
 
+	
+	public void printEvaluatedCode(){
+		for(CompilationUnit compilationUnit: compilationUnits)
+			System.out.println(compilationUnit.toString());
+
+	}
+	
+	public Evaluations getEvaluations(){
+		return evaluations;
+	}
 }

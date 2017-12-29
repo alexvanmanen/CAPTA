@@ -1,11 +1,9 @@
 package nl.alexvanmanen.capta.statics;
 
-import java.io.FileNotFoundException;
+
 import java.util.List;
 
-import com.github.javaparser.ast.CompilationUnit;
 
-import junit.framework.Assert;
 import nl.alexvanmanen.capta.Evaluator;
 import nl.alexvanmanen.capta.helper.ADLReader;
 import nl.alexvanmanen.capta.model.Assignment;
