@@ -14,7 +14,7 @@ public class TestTemplate2 extends TestCase {
 	}
 
 	public void test() throws FileNotFoundException {
-		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/assignments/Math.java");
+		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
 		Template2 template = new Template2("./cases/test.adl", assignmentOutput);
 		
 		for(Evaluation evaluation: template.evaluate()){

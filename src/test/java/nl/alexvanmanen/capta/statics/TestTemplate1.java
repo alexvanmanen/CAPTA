@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 
 import junit.framework.TestCase;
 import nl.alexvanmanen.capta.model.AssignmentOutput;
+import nl.alexvanmanen.capta.model.Evaluations;
 
 public class TestTemplate1 extends TestCase {
 
@@ -13,7 +14,7 @@ public class TestTemplate1 extends TestCase {
 
 	public void test() throws FileNotFoundException {
 
-		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/assignments/Hello.java");
+		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
 		Template1 template1Statically = new Template1(assignmentOutput.getCompilationUnits());
 		String className = "Hello";
 		String methodName = "main";
@@ -21,8 +22,8 @@ public class TestTemplate1 extends TestCase {
 		template1Statically.setVariable("String", "name");
 		template1Statically.setWhatIsBeingPrinted("Hello");
 
-		String result = template1Statically.evaluate();
-		System.out.println(result);
+		Evaluations evaluations = template1Statically.evaluate();
+		evaluations.print();
 
 	}
 }

@@ -4,12 +4,13 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.alexvanmanen.capta.Template;
 import nl.alexvanmanen.capta.model.AssignmentOutput;
 import nl.alexvanmanen.capta.model.Criteria;
 import nl.alexvanmanen.capta.model.Evaluation;
 import nl.alexvanmanen.capta.model.Evaluations;
 
-public class Template1 {
+public class Template1 implements nl.alexvanmanen.capta.Template1 {
 
 	private AssignmentOutput assignmentOutput;
 	private String className;
@@ -30,11 +31,11 @@ public class Template1 {
 		template.setSignature("Hello", "main");
 		template.setVariable("String", "naam");
 		template.setWhatIsBeingPrinted("Helo");
-		Evaluations evaluations = template.start();
+		Evaluations evaluations = template.evaluate();
 		evaluations.print();
 	}
 
-	public Evaluations start() {
+	public Evaluations evaluate() {
 
 		String feedback = "";
 

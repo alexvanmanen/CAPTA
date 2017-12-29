@@ -27,12 +27,16 @@ public class Evaluations {
 	}
 
 	public void print() {
-		List<Evaluation> list = new ArrayList<Evaluation>(evaluationSet);
-		Collections.sort(list);
-		for(Evaluation e: list){
-			if(e.satifies){
-				System.out.print(" - "+ e.criteria.points + " - " + e.criteria.description.replace("\n", ""));
+		if(evaluationSet != null){
+			List<Evaluation> list = new ArrayList<Evaluation>(evaluationSet);
+			Collections.sort(list);
+			for(Evaluation e: list){
+				if(e.satifies){
+					System.out.print(" - "+ e.criteria.points + " - " + e.criteria.description.replace("\n", ""));
+				}
 			}
+		} else {
+			System.out.println("evaluations is empty");
 		}
 	}
 	

@@ -31,7 +31,7 @@ public class TestEvaluator extends TestCase {
 		criteria.description = "There is a variable " + name + " of the type " + type + "\n";
 		criteria.points = 2;
 
-		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/assignments/Hello.java");
+		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
 		Evaluation actual = new Evaluator().evaluate(criteria, assignmentOutput);
 		Assert.assertEquals(true, actual.satifies);
 	}
@@ -48,7 +48,7 @@ public class TestEvaluator extends TestCase {
 		criteria.points = 2;
 
 		assignment.add(criteria);
-		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/assignments/Hello.java");
+		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
 		List<Evaluation> actual = new Evaluator().evaluate(assignment, assignmentOutput);
 		
 		
@@ -68,7 +68,7 @@ public class TestEvaluator extends TestCase {
 		criteria.points = 2;
 
 		assignment.add(criteria);
-		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/assignments/Hello.java");
+		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
 		List<Evaluation> actual = new Evaluator().evaluate(assignment, assignmentOutput);
 		
 		Assert.assertEquals(false, actual.get(0).satifies);
@@ -103,7 +103,7 @@ public class TestEvaluator extends TestCase {
 		assignment.add(criteria2);
 		assignment.add(criteria3);
 
-		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/assignments/Hello.java");
+		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
 		List<Evaluation> actual = new Evaluator().evaluate(assignment, assignmentOutput);
 		
 		for(Evaluation evaluation: actual){
@@ -121,7 +121,7 @@ public class TestEvaluator extends TestCase {
 		criteria.description = "There is a expression "+ expression +"\n";
 		criteria.points = 2;
 
-		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/assignments/Math.java");
+		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
 		Evaluation actual = new Evaluator().evaluate(criteria, assignmentOutput);
 		Assert.assertEquals(true, actual.satifies);
 	}

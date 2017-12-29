@@ -12,7 +12,7 @@ import nl.alexvanmanen.capta.visitor.ConsoleVisitor;
 import nl.alexvanmanen.capta.visitor.MethodVisitor;
 import nl.alexvanmanen.capta.visitor.VariableVisitor;
 
-public class Template1 {
+public class Template1 implements nl.alexvanmanen.capta.Template1{
 
 	private String className;
 	private String methodName;
@@ -42,13 +42,13 @@ public class Template1 {
 		template1Statically.setVariable("String", "name");
 		template1Statically.setWhatIsBeingPrinted("Hello");
 
-		String result = template1Statically.evaluate();
-		System.out.println(result);
+		Evaluations evaluations = template1Statically.evaluate();
+		evaluations.print();
 
 	}
 	
 	
-	public String evaluate()  {
+	public Evaluations evaluate()  {
 		
 		String feedback = "";
 
@@ -70,11 +70,13 @@ public class Template1 {
 		
 		
 		Criteria[] list = { criteria1, criteria2, s3 };
+		
+		
 		return evaluate(feedback, list);
 
 	}
 
-	private String evaluate(String feedback, Criteria[] list) {
+	private Evaluations evaluate(String feedback, Criteria[] list) {
 		for(CompilationUnit compilationUnit: compilationUnits){
 			for (Criteria criteria : list) {
 				compilationUnit.accept(criteria.visitor, null);
@@ -84,7 +86,7 @@ public class Template1 {
 				}
 			}
 		}
-		return feedback;
+		return evaluations;
 	}
 
 	public void setSignature(String className, String methodName) {
