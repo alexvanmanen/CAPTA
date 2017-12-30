@@ -10,5 +10,4 @@ import nl.alexvanmanen.capta.statics.Template2;
 
 public class Start {
 
-	
 }

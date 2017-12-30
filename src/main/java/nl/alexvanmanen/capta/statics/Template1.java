@@ -5,14 +5,14 @@ import java.util.List;
 import com.github.javaparser.ast.CompilationUnit;
 
 import nl.alexvanmanen.capta.model.AssignmentOutput;
-import nl.alexvanmanen.capta.model.Criteria;
+import nl.alexvanmanen.capta.model.Criterion;
 import nl.alexvanmanen.capta.model.Evaluation;
 import nl.alexvanmanen.capta.model.Evaluations;
 import nl.alexvanmanen.capta.visitor.ConsoleVisitor;
 import nl.alexvanmanen.capta.visitor.MethodVisitor;
 import nl.alexvanmanen.capta.visitor.VariableVisitor;
 
-public class Template1 implements nl.alexvanmanen.capta.Template1{
+public class Template1 implements nl.alexvanmanen.capta.Template1 {
 
 	private String className;
 	private String methodName;
@@ -26,14 +26,13 @@ public class Template1 implements nl.alexvanmanen.capta.Template1{
 	public Template1(List<CompilationUnit> list) {
 		this.compilationUnits = list;
 	}
-	
+
 	public Template1(AssignmentOutput assignmentOutput) {
 		this(assignmentOutput.getCompilationUnits());
 	}
 
-	public static void main(String[] args){
-		
-		
+	public static void main(String[] args) {
+
 		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/assignments/Hello.java");
 		Template1 template1Statically = new Template1(assignmentOutput);
 		String className = "Hello";
@@ -46,39 +45,35 @@ public class Template1 implements nl.alexvanmanen.capta.Template1{
 		evaluations.print();
 
 	}
-	
-	
-	public Evaluations evaluate()  {
-		
+
+	public Evaluations evaluate() {
+
 		String feedback = "";
 
-		Criteria criteria1 = new Criteria();
-		criteria1.visitor = new VariableVisitor(type, name);
-		criteria1.description = "+2 There is a variable " + name + " of the type " + type + "\n";
-		criteria1.points = 2;
-		
-		Criteria criteria2 = new Criteria();
-		criteria2.visitor = new MethodVisitor(methodName, className);
-		criteria2.description = "+1 There is a method " + methodName + " in the class " + className + "\n";
-		criteria2.points = 1;
+		Criterion criterion1 = new Criterion();
+		criterion1.visitor = new VariableVisitor(type, name);
+		criterion1.description = "+2 There is a variable " + name + " of the type " + type + "\n";
+		criterion1.points = 2;
 
-		Criteria s3 = new Criteria();
-		s3.visitor = new ConsoleVisitor(printed);
-		s3.description = "+2 " + printed + " is being printed\n";
-		s3.points = 2;
-		
-		
-		
-		Criteria[] list = { criteria1, criteria2, s3 };
-		
-		
+		Criterion criterion2 = new Criterion();
+		criterion2.visitor = new MethodVisitor(methodName, className);
+		criterion2.description = "+1 There is a method " + methodName + " in the class " + className + "\n";
+		criterion2.points = 1;
+
+		Criterion criterion3 = new Criterion();
+		criterion3.visitor = new ConsoleVisitor(printed);
+		criterion3.description = "+2 " + printed + " is being printed\n";
+		criterion3.points = 2;
+
+		Criterion[] list = { criterion1, criterion2, criterion3 };
+
 		return evaluate(feedback, list);
 
 	}
 
-	private Evaluations evaluate(String feedback, Criteria[] list) {
-		for(CompilationUnit compilationUnit: compilationUnits){
-			for (Criteria criteria : list) {
+	private Evaluations evaluate(String feedback, Criterion[] list) {
+		for (CompilationUnit compilationUnit : compilationUnits) {
+			for (Criterion criteria : list) {
 				compilationUnit.accept(criteria.visitor, null);
 				if (criteria.visitor.isFound()) {
 					evaluations.add(new Evaluation(criteria, true));
@@ -104,14 +99,13 @@ public class Template1 implements nl.alexvanmanen.capta.Template1{
 		this.printed = printed;
 	}
 
-	
-	public void printEvaluatedCode(){
-		for(CompilationUnit compilationUnit: compilationUnits)
+	public void printEvaluatedCode() {
+		for (CompilationUnit compilationUnit : compilationUnits)
 			System.out.println(compilationUnit.toString());
 
 	}
-	
-	public Evaluations getEvaluations(){
+
+	public Evaluations getEvaluations() {
 		return evaluations;
 	}
 }

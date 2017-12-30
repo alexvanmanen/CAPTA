@@ -19,7 +19,7 @@ public class Evaluations {
 	private boolean isDouble(Evaluation other){
 		boolean result = false;
 		for(Evaluation e: evaluationSet){
-			if(e.criteria.equals(other.criteria)){
+			if(e.criterion.equals(other.criterion)){
 				result = true;
 			}
 		}
@@ -32,7 +32,7 @@ public class Evaluations {
 			Collections.sort(list);
 			for(Evaluation e: list){
 				if(e.satifies){
-					System.out.print(" - "+ e.criteria.points + " - " + e.criteria.description.replace("\n", ""));
+					System.out.print(" - "+ e.criterion.points + " - " + e.criterion.description.replace("\n", ""));
 				}
 			}
 		} else {
@@ -40,9 +40,9 @@ public class Evaluations {
 		}
 	}
 	
-	public void checkIfCriteriaAreMet(List<Criteria> list){
+	public void checkIfCriteriaAreMet(List<Criterion> list){
 		for(Evaluation e: evaluationSet){
-			if(list.contains(e.criteria)){
+			if(list.contains(e.criterion)){
 				e.satifies = true;
 			}
 		}

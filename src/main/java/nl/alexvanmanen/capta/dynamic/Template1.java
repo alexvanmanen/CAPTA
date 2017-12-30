@@ -4,9 +4,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.alexvanmanen.capta.Template;
 import nl.alexvanmanen.capta.model.AssignmentOutput;
-import nl.alexvanmanen.capta.model.Criteria;
+import nl.alexvanmanen.capta.model.Criterion;
 import nl.alexvanmanen.capta.model.Evaluation;
 import nl.alexvanmanen.capta.model.Evaluations;
 
@@ -39,33 +38,33 @@ public class Template1 implements nl.alexvanmanen.capta.Template1 {
 
 		String feedback = "";
 
-		Criteria criteria1 = new Criteria();
-		criteria1.description = "+1 There is a class Hello\n";
-		criteria1.points = 1;
+		Criterion criterion1 = new Criterion();
+		criterion1.description = "+1 There is a class Hello\n";
+		criterion1.points = 1;
 
-		Criteria criteria2 = new Criteria();
-		criteria2.description = "+1 There is a method main\n";
-		criteria2.points = 1;
+		Criterion criterion2 = new Criterion();
+		criterion2.description = "+1 There is a method main\n";
+		criterion2.points = 1;
 		
-		Criteria criteria3 = new Criteria();
-		criteria3.description = "+3 Hello is being printed\n";
-		criteria3.points = 3;
+		Criterion criterion3 = new Criterion();
+		criterion3.description = "+3 Hello is being printed\n";
+		criterion3.points = 3;
 		
-		List<Criteria> list = new ArrayList<Criteria>();
+		List<Criterion> list = new ArrayList<Criterion>();
 
 		
 		for (Class c : 	assignmentOutput.getClassFiles()) {
 			if (c.getName().contains(className)) {
-				list.add(criteria1);
+				list.add(criterion1);
 				Method main = new MethodsRetriever().getMethod(c, methodName);
 				if (main != null) {
-					list.add(criteria2);
+					list.add(criterion2);
 
 					MethodExecutor methodExecutor = new MethodExecutor(c, main);
 					String consoleOutput = new TestHelper().getConsoleOutput(methodExecutor);
 
 					if (consoleOutput.contains(printed)) {
-						list.add(criteria3);
+						list.add(criterion3);
 					}
 				}
 			}
@@ -73,9 +72,9 @@ public class Template1 implements nl.alexvanmanen.capta.Template1 {
 		
 
 		Evaluations evaluations = new Evaluations();
-		evaluations.add(new Evaluation(criteria1, false));
-		evaluations.add(new Evaluation(criteria2, false));
-		evaluations.add(new Evaluation(criteria3, false));
+		evaluations.add(new Evaluation(criterion1, false));
+		evaluations.add(new Evaluation(criterion2, false));
+		evaluations.add(new Evaluation(criterion3, false));
 		
 		evaluations.checkIfCriteriaAreMet(list);
 		

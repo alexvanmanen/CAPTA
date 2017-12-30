@@ -1,22 +1,22 @@
 package nl.alexvanmanen.capta.model;
 
 public class Evaluation implements Comparable<Evaluation>{
-	public Criteria criteria;
+	public Criterion criterion;
 	public boolean satifies;
 	
-	public Evaluation(Criteria criteria, boolean statifies) {
-		this.criteria = criteria;
+	public Evaluation(Criterion criterion, boolean statifies) {
+		this.criterion = criterion;
 		this.satifies = statifies;
 		
 	}
 	
 	public boolean equals(Evaluation other){
-		return other.criteria == this.criteria;
+		return other.criterion == this.criterion;
 	}
 
 	@Override
 	public int compareTo(Evaluation other) {
-		return this.criteria.description.compareTo(other.criteria.description);
+		return this.criterion.description.compareTo(other.criterion.description);
 	}
 	
 	

@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Assignment {
-	private List<Criteria> criterion = new ArrayList<Criteria>();
+	private List<Criterion> criteria = new ArrayList<Criterion>();
 	String description;
 	
 	
-	public void add(Criteria c){
-		criterion.add(c);
+	public void add(Criterion c){
+		criteria.add(c);
 	}
 	
-	public List<Criteria> getCriterion(){
-		return criterion;
+	public List<Criterion> getCriteria(){
+		return criteria;
 	}
 	
 	

@@ -7,7 +7,7 @@ import nl.alexvanmanen.capta.Evaluator;
 import nl.alexvanmanen.capta.helper.ADLReader;
 import nl.alexvanmanen.capta.model.Assignment;
 import nl.alexvanmanen.capta.model.AssignmentOutput;
-import nl.alexvanmanen.capta.model.Criteria;
+import nl.alexvanmanen.capta.model.Criterion;
 import nl.alexvanmanen.capta.model.Evaluations;
 import nl.alexvanmanen.capta.model.Exp;
 import nl.alexvanmanen.capta.visitor.BinaryExpressionVisitor;
@@ -28,12 +28,12 @@ public class Template2 {
 
 			Assignment assignment = new Assignment();
 			for(Exp exp: list){
-				Criteria criteria = new Criteria();
+				Criterion criterion = new Criterion();
 
-				criteria.visitor = new BinaryExpressionVisitor(exp);
-				criteria.description = "There is a expression " + exp+ "\n";
-				criteria.points = 2;
-				assignment.add(criteria);
+				criterion.visitor = new BinaryExpressionVisitor(exp);
+				criterion.description = "There is a expression " + exp+ "\n";
+				criterion.points = 2;
+				assignment.add(criterion);
 			}
 			
 			Evaluations actual = new Evaluator().evaluate(assignment, assignmentOutput);
