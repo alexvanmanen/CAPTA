@@ -17,9 +17,9 @@ public class TestTemplate2 extends TestCase {
 		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
 		Template2 template = new Template2("./cases/test.adl", assignmentOutput);
 		
-		for(Evaluation evaluation: template.evaluate()){
-			Assert.assertEquals(true, evaluation.satifies);
-		}		
+		
+		Assert.assertEquals(true, template.evaluate().areAllEvaluationsSatisfied());
+				
 
 	}
 }
