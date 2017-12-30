@@ -29,10 +29,10 @@ public class MethodExecutor implements Runnable{
 
 			System.out.println(f.get(1, TimeUnit.SECONDS));
 		} catch (final TimeoutException e) {
-			System.err.print("Method execution took to long");
+			System.err.print(" - Method execution took to long");
 
 		} catch(ExecutionException e) {
-			System.err.print("Unable to execute method");
+			System.err.print(" - Unable to execute method");
 		} catch (Exception e) {
 
 			e.printStackTrace();

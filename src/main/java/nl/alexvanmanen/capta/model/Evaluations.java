@@ -48,5 +48,18 @@ public class Evaluations {
 		}
 	}
 	
+	public Evaluation getFirst(){
+		return evaluationSet.iterator().next();
+	}
+	
+	public boolean areAllEvaluationsSatisfied(){
+		for(Evaluation e: evaluationSet){
+			if(!e.satifies){
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	
 }

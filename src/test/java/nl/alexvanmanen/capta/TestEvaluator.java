@@ -9,6 +9,7 @@ import nl.alexvanmanen.capta.model.Assignment;
 import nl.alexvanmanen.capta.model.AssignmentOutput;
 import nl.alexvanmanen.capta.model.Criteria;
 import nl.alexvanmanen.capta.model.Evaluation;
+import nl.alexvanmanen.capta.model.Evaluations;
 import nl.alexvanmanen.capta.model.Exp;
 import nl.alexvanmanen.capta.statics.Template2;
 import nl.alexvanmanen.capta.visitor.BinaryExpressionVisitor;
@@ -49,10 +50,10 @@ public class TestEvaluator extends TestCase {
 
 		assignment.add(criteria);
 		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
-		List<Evaluation> actual = new Evaluator().evaluate(assignment, assignmentOutput);
+		Evaluations actual = new Evaluator().evaluate(assignment, assignmentOutput);
 		
 		
-		Assert.assertEquals(true, actual.get(0).satifies);
+		Assert.assertEquals(true, actual.getFirst().satifies);
 	}
 	
 	
@@ -69,10 +70,13 @@ public class TestEvaluator extends TestCase {
 
 		assignment.add(criteria);
 		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
-		List<Evaluation> actual = new Evaluator().evaluate(assignment, assignmentOutput);
 		
-		Assert.assertEquals(false, actual.get(0).satifies);
-
+		Evaluations actual = new Evaluator().evaluate(assignment, assignmentOutput);
+		
+		
+		Assert.assertEquals(false, actual.getFirst().satifies);
+		
+	
 	}
 	
 	public void testEvaluationAssignments() {
@@ -104,11 +108,11 @@ public class TestEvaluator extends TestCase {
 		assignment.add(criteria3);
 
 		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
-		List<Evaluation> actual = new Evaluator().evaluate(assignment, assignmentOutput);
+		Evaluations actual = new Evaluator().evaluate(assignment, assignmentOutput);
 		
-		for(Evaluation evaluation: actual){
-			Assert.assertEquals(true, evaluation.satifies);
-		}
+		
+		Assert.assertEquals(true, actual.areAllEvaluationsSatisfied());
+		
 		
 	}
 	

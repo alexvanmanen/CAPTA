@@ -1,18 +1,30 @@
 package nl.alexvanmanen.capta.dynamic;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-
-import nl.alexvanmanen.capta.dynamic.Console;
 
 public class Template2 {
 
-	//@Before
-	public void setUp() throws Exception {
-	}
 
-	//@Test
+
+
 	public static void main(String[] args)  {
 
+		Input[] array = generateInput();
+		for(Input input: array){
+			String content = new Console().getConsoleOutput(input.input);
+			boolean actual = content.contains(input.output.toString());
+			//System.out.println("assert: "+ (input.expected == actual));
+			
+			if(input.expected){
+				System.out.println(content.contains(input.output.toString()));
+			} else  {
+				System.out.println(!content.contains(input.output.toString()));
+			}
+			
+		}
+		System.out.println("einde");
+
+	}
+
+	private static Input[] generateInput() {
 		//INPUT > 10 #Het getal is groter dan 10
 		Input i1 = new Input("10","Het getal is groter dan 10.",false);
 		Input i2 = new Input("11","Het getal is groter dan 10.",true);
@@ -34,20 +46,7 @@ public class Template2 {
 		
 		//Input[] array = { i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11 };
 		Input[] array = { i1, i2, i3, i4, i5, i6, i7, i8, i11 };
-		for(Input input: array){
-			String content = new Console().getConsoleOutput(input.input);
-			boolean actual = content.contains(input.output.toString());
-			System.out.println("assert: "+ (input.expected == actual));
-			
-			if(input.expected){
-				System.out.println(content.contains(input.output.toString()));
-			} else  {
-				System.out.println(!content.contains(input.output.toString()));
-			}
-			
-		}
-		System.out.println("einde");
-
+		return array;
 	}
 }
 
