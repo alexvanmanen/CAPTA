@@ -61,5 +61,14 @@ public class Evaluations {
 		return true;
 	}
 	
+	public int getTotalPoints(){
+		int total = 0;
+		for(Evaluation e: evaluationSet){
+			if(e.satifies){
+				total += e.criterion.points;
+			}
+		}
+		return total;
+	}
 	
 }
