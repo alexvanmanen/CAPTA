@@ -1,5 +1,7 @@
 package nl.alexvanmanen.capta.dynamic;
 
+import nl.alexvanmanen.capta.model.Criterion;
+
 public class Template2 {
 
 
@@ -25,6 +27,8 @@ public class Template2 {
 	}
 
 	private static Input[] generateInput() {
+		
+		
 		//INPUT > 10 #Het getal is groter dan 10
 		Input i1 = new Input("10","Het getal is groter dan 10.",false);
 		Input i2 = new Input("11","Het getal is groter dan 10.",true);
@@ -59,6 +63,7 @@ class Input {
 	String input;
 	boolean expected;
 	Output output;
+	Criterion criterion;
 	
 	public String toString(){
 		return input + " " + output+ " " + expected;
