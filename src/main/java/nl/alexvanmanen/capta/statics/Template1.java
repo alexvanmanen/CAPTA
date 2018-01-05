@@ -9,8 +9,8 @@ import nl.alexvanmanen.capta.model.Assignment;
 import nl.alexvanmanen.capta.model.AssignmentOutput;
 import nl.alexvanmanen.capta.model.Criterion;
 import nl.alexvanmanen.capta.model.Evaluations;
+import nl.alexvanmanen.capta.visitor.ClassMethodVisitor;
 import nl.alexvanmanen.capta.visitor.ConsoleVisitor;
-import nl.alexvanmanen.capta.visitor.MethodVisitor;
 import nl.alexvanmanen.capta.visitor.VariableVisitor;
 
 public class Template1 implements nl.alexvanmanen.capta.Template1{
@@ -59,7 +59,7 @@ public class Template1 implements nl.alexvanmanen.capta.Template1{
 		criterion1.points = 2;
 		
 		Criterion criterion2 = new Criterion();
-		criterion2.visitor = new MethodVisitor(methodName, className);
+		criterion2.visitor = new ClassMethodVisitor(methodName, className);
 		criterion2.description = "+1 There is a method " + methodName + " in the class " + className + "\n";
 		criterion2.points = 1;
 
