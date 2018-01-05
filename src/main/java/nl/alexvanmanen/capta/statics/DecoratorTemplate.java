@@ -1,10 +1,8 @@
 package nl.alexvanmanen.capta.statics;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import nl.alexvanmanen.capta.Evaluator;
-import nl.alexvanmanen.capta.Template;
 import nl.alexvanmanen.capta.model.Assignment;
 import nl.alexvanmanen.capta.model.AssignmentOutput;
 import nl.alexvanmanen.capta.model.Criterion;
@@ -13,40 +11,18 @@ import nl.alexvanmanen.capta.visitor.ClassExtendsVisitor;
 import nl.alexvanmanen.capta.visitor.ClassMethodVisitor;
 import nl.alexvanmanen.capta.visitor.VariableVisitor;
 
-public class DecoratorTemplate implements Template {
+public class DecoratorTemplate extends nl.alexvanmanen.capta.DecoratorTemplate {
 
-	private String component;
-	private String decorator;
-	private Set<String> concreteDecorators = new HashSet<String>();
-	private Set<String> concreteComponents = new HashSet<String>();
-	private AssignmentOutput assignmentOutput;
-	private String methodName;
+
 
 	public DecoratorTemplate(AssignmentOutput assignmentOutput) {
-		this.assignmentOutput = assignmentOutput;
-	}
-
-	public void setComponent(String component, String methodName) {
-		this.component = component;
-		this.methodName = methodName;
-	}
-
-	public void setDecorator(String decorator) {
-		this.decorator = decorator;
-	}
-
-	public void addConcreteDecarator(String concreteDecorator) {
-		this.concreteDecorators.add(concreteDecorator);
-	}
-
-	public void addConcreteComponent(String concreteComponent) {
-		this.concreteComponents.add(concreteComponent);
+		super(assignmentOutput);
 	}
 
 	public Evaluations evaluate() {
-		for (Class c : assignmentOutput.getClassFiles()) {
-			System.out.println(c.getName());
-		}
+//		for (Class c : assignmentOutput.getClassFiles()) {
+//			System.out.println(c.getName());
+//		}
 
 		Assignment as = new Assignment();
 
@@ -68,8 +44,8 @@ public class DecoratorTemplate implements Template {
 		Evaluations evaluations = new Evaluator().evaluate(as, assignmentOutput);
 
 		evaluations.print();
-		System.out.println();
-		System.out.println("total points: " + evaluations.getTotalPoints());
+//		System.out.println();
+//		System.out.println("total points: " + evaluations.getTotalPoints());
 
 		return evaluations;
 
