@@ -1,6 +1,8 @@
 package nl.alexvanmanen.capta;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import nl.alexvanmanen.capta.model.AssignmentOutput;
@@ -14,6 +16,7 @@ public abstract class DecoratorTemplate {
 	protected Set<String> concreteComponents = new HashSet<String>();
 	protected AssignmentOutput assignmentOutput;
 	protected String methodName;
+	protected Map<String, String[]> executionList = new HashMap<String, String[]>();
 
 	public DecoratorTemplate(AssignmentOutput assignmentOutput) {
 		this.assignmentOutput = assignmentOutput;
@@ -34,6 +37,10 @@ public abstract class DecoratorTemplate {
 
 	public void addConcreteComponent(String concreteComponent) {
 		this.concreteComponents.add(concreteComponent);
+	}
+	
+	public void addExecutions(String concreteComponent, String... concreteComponents) {
+		executionList.put(concreteComponent, concreteComponents);
 	}
 
 	public abstract Evaluations evaluate() throws NoAssignmentDefinedException;

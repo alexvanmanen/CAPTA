@@ -20,14 +20,14 @@ public class ClassExtendsVisitor extends AbstractVisitor {
 	@Override
 	public void visit(ClassOrInterfaceDeclaration n, Void arg) {
 		
-		found = n.getNameAsString().equalsIgnoreCase(className) && doesExtendsFrom(n, extendsFrom);
+		found = n.getNameAsString().contains(className) && doesExtendsFrom(n, extendsFrom);
 		super.visit(n, arg);
 	}
 
 	private boolean doesExtendsFrom(ClassOrInterfaceDeclaration n, String extendsFrom) {
 		NodeList<ClassOrInterfaceType> extendedTypes = n.getExtendedTypes();
 		for(ClassOrInterfaceType type: extendedTypes){
-			if(type.getNameAsString().equalsIgnoreCase(extendsFrom)){
+			if(type.getNameAsString().contains(extendsFrom)){
 				return true;
 			}
 		}
