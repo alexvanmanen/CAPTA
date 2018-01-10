@@ -22,12 +22,6 @@ public class DecoratorTemplate extends nl.alexvanmanen.capta.DecoratorTemplate {
 	}
 
 	public Evaluations evaluate() {
-//		Criterion criterion3 = new Criterion();
-//		criterion3.description = "There is a variable double with the name: myPrice";
-//		criterion3.points = 3;
-//		criterion3.visitor = new VariableVisitor("double", "myPrice");
-//		as.add(criterion3);
-
 		
 		
 		Assignment as = new Assignment();
@@ -76,4 +70,6 @@ public class DecoratorTemplate extends nl.alexvanmanen.capta.DecoratorTemplate {
 			as.add(criterion3);
 		}
 	}
+	
+
 }
