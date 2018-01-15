@@ -24,7 +24,12 @@ public class TestHelper {
 		String content = new String(byteArrayOutputStream.toByteArray(), StandardCharsets.UTF_8);
 		System.setOut(stdout);
 		System.setIn(stdin);
-		return content;
+		if(execute.getError() != null){
+			return execute.getError();
+		} else {
+			return content;
+		}
+		
 	}
 	
 	public String getConsoleOutput(MethodExecutor execute) {
@@ -40,6 +45,9 @@ public class TestHelper {
 
 		return content;
 	}
+	
+	
+	
 	
 
 }

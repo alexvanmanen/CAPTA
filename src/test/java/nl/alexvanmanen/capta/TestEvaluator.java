@@ -30,6 +30,7 @@ public class TestEvaluator extends TestCase {
 
 		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
 		Evaluation actual = new Evaluator().evaluate(criterion, assignmentOutput);
+		
 		Assert.assertEquals(true, actual.satifies);
 	}
 	

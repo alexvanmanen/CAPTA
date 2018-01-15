@@ -10,6 +10,7 @@ import java.util.concurrent.TimeoutException;
 public class MethodExecutor implements Runnable{
 	private Class<?> classs;
 	private Method method;
+	private String error = null;
 	
 	public MethodExecutor(Class classs, Method method) {
 		this.classs = classs;
@@ -19,7 +20,7 @@ public class MethodExecutor implements Runnable{
 	
 	public void execute() {
 		final ExecutorService service = Executors.newSingleThreadExecutor();
-
+	
 		try {
 			String[] params = null;
 			final Future<Object> f = service.submit(() -> {
@@ -29,10 +30,12 @@ public class MethodExecutor implements Runnable{
 
 			System.out.println(f.get(1, TimeUnit.SECONDS));
 		} catch (final TimeoutException e) {
-			System.err.print(" - Method execution took to long - ");
+			error = "Method execution took to long";
+			System.err.print(" - "+error+" - ");			
 
 		} catch(ExecutionException e) {
-			System.err.print(" - Unable to execute method - ");
+			error = "Unable to execute method";
+			System.err.print(" - "+error+" - ");
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -40,6 +43,12 @@ public class MethodExecutor implements Runnable{
             service.shutdown();
         }
 	}
+	
+	
+	public String getError(){
+		return error;
+	}
+	
 
 
 	@Override

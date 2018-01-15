@@ -7,20 +7,18 @@ import nl.alexvanmanen.capta.reflection.JavaClassLoader;
 
 public class MethodsRetriever {
 	
-	public List<MethodExecutor> getExecutors() throws ClassNotFoundException, NoSuchMethodException, SecurityException{
+	
+	public List<MethodExecutor> getExecutors(String path) throws ClassNotFoundException, NoSuchMethodException, SecurityException{
 		List<MethodExecutor> list = new ArrayList<MethodExecutor>();
 		JavaClassLoader jcl = new JavaClassLoader();
 
-		List<Class> classes = jcl.getClasses("./cases/assignments/", "assignments");
+		List<Class> classes = jcl.getClasses(path);
 		for (Class c : classes) {
-			if(c.getCanonicalName().equalsIgnoreCase("assignments.Math")){
 				Method method = c.getMethod("main", String[].class);
 				list.add(new MethodExecutor(c, method));
 				
-			}
 		}
 		return list;
-		//Class classs = Class.forName("assignments.Math");
 	}
 	
 	public Method getMethod(Class clazz, String methodName) {

@@ -10,7 +10,6 @@ import nl.alexvanmanen.capta.model.Evaluations;
 
 public class Evaluator {
 
-	
 	public Evaluations evaluate(Assignment assignment, AssignmentOutput assignmentOutput){
 		Evaluations result = new Evaluations();
 		for(Criterion criterion: assignment.getCriteria()){

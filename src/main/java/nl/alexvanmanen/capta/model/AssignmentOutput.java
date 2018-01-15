@@ -16,56 +16,56 @@ public class AssignmentOutput {
 
 	private List<CompilationUnit> compilationUnits = new ArrayList<CompilationUnit>();
 	private List<Class> classes;
+	private String fileName;
 
-	
-	public AssignmentOutput(String fileName){
+	public AssignmentOutput(String fileName) {
+		this.fileName = fileName;
 		retrieveJavaFiles(new File(fileName));
 		retrieveClassFiles(fileName);
 	}
-	
 
-	public void retrieveClassFiles(String fileName){
+	public void retrieveClassFiles(String fileName) {
 		JavaClassLoader jcl = new JavaClassLoader();
-		
+
 		classes = jcl.getClasses(fileName);
-		
+
 	}
 
 	private void retrieveJavaFiles(File file) {
 		for (File subFile : file.listFiles()) {
-			//System.out.println("subfile: " + subFile.getPath().endsWith(".java") +" - " + subFile.getPath());
 			try {
 				addCompilationUnit(subFile);
 			} catch (FileNotFoundException e) {
 				try {
 					retrieveJavaFiles(subFile);
 				} catch (java.lang.NullPointerException ex) {
-					//Not a directory
+					// Not a directory
 				}
 
 			}
 		}
 	}
-	
-	private void addCompilationUnit(File file) throws FileNotFoundException{
+
+	private void addCompilationUnit(File file) throws FileNotFoundException {
 		FileInputStream in;
 
 		try {
 			in = new FileInputStream(file);
 			compilationUnits.add(JavaParser.parse(in));
-		}  catch (ParseProblemException e){
-			//Unable to parse. That's no problem.
+		} catch (ParseProblemException e) {
+			// Unable to parse. That's no problem.
 		}
 	}
-	
-	
-	public List<CompilationUnit> getCompilationUnits(){
+
+	public List<CompilationUnit> getCompilationUnits() {
 		return compilationUnits;
 	}
-	
-	public List<Class> getClassFiles(){
+
+	public List<Class> getClassFiles() {
 		return classes;
 	}
-	
-	
+
+	public String getFileName() {
+		return fileName;
+	}
 }

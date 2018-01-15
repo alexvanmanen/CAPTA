@@ -78,12 +78,9 @@ public class DecoratorTemplate extends nl.alexvanmanen.capta.DecoratorTemplate {
 
 		
 		for (Class c : 	assignmentOutput.getClassFiles()) {
-			
 			if (c.getName().contains(className)) {
 				Method main = new MethodsRetriever().getMethod(c, methodName);
 				if (main != null) {
-					//list.add(criterion2);
-
 					MethodExecutor methodExecutor = new MethodExecutor(c, main);
 					String consoleOutput = new TestHelper().getConsoleOutput(methodExecutor);
 					if (consoleOutput.contains(printed2)) {
