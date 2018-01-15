@@ -17,39 +17,6 @@ public class DecoratorTemplate extends nl.alexvanmanen.capta.DecoratorTemplate {
 	}
 
 	public Evaluations evaluate() {
-
-
-//		Object o = execute("Italian", "getPrice");
-//		System.out.println(o);
-
-		// Object o = m.invoke(t, new Locale(args[1], args[2], args[3]));
-
-		// Method getPrice = new MethodsRetriever().getMethod(c, "getPrice");
-
-		// MethodExecutor methodExecutor = new MethodExecutor(c, getPrice);
-		//
-		//
-		// String consoleOutput = new
-		// TestHelper().getConsoleOutput(methodExecutor);
-		// System.out.println(consoleOutput);
-
-		// for (Class c : assignmentOutput.getClassFiles()) {
-		// if (c.getName().contains(className)) {
-		// list.add(criterion1);
-		// Method main = new MethodsRetriever().getMethod(c, methodName);
-		// if (main != null) {
-		// list.add(criterion2);
-		//
-		// MethodExecutor methodExecutor = new MethodExecutor(c, main);
-		// String consoleOutput = new
-		// TestHelper().getConsoleOutput(methodExecutor);
-		//
-		// if (consoleOutput.contains(printed)) {
-		// list.add(criterion3);
-		// }
-		// }
-		// }
-		// }
 		
 		String feedback = "";
 

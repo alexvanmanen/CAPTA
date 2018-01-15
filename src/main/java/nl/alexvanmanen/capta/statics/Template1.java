@@ -68,9 +68,6 @@ public class Template1 implements nl.alexvanmanen.capta.Template1{
 		criterion3.description = "+2 " + printed + " is being printed\n";
 		criterion3.points = 2;
 		
-		
-		
-		//Criterion[] list = { criterion1, criterion2, criterion3 };
 		Assignment assignment = new Assignment();
 		assignment.add(criterion1);
 		assignment.add(criterion2);

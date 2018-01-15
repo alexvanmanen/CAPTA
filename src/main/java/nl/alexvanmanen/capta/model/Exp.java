@@ -45,6 +45,5 @@ public class Exp {
 	
 	public boolean isEqual(BinaryExpr binaryExpr){
 		return binaryExpr.getOperator().equals(this.operator) && binaryExpr.getRight().toString().equalsIgnoreCase(this.right);
-		//return binaryExpr.getLeft().toString().equalsIgnoreCase(this.left) && binaryExpr.getOperator().equals(this.operator) && binaryExpr.getRight().toString().equalsIgnoreCase(this.right);
 	}
 }

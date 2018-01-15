@@ -28,17 +28,4 @@ public class Evaluator {
 		}
 		return new Evaluation(criterion,false);
 	}
-	
-//	public Evaluations evaluate(Criterion[] list, List<CompilationUnit> compilationUnits) {
-//		Evaluations evaluations = new Evaluations();
-//		for(CompilationUnit compilationUnit: compilationUnits){
-//			for (Criterion criteria : list) {
-//				compilationUnit.accept(criteria.visitor, null);
-//				if (criteria.visitor.isFound()) {
-//					evaluations.add(new Evaluation(criteria, true));
-//				} 
-//			}
-//		}
-//		return evaluations;
-//	}
 }
