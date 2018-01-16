@@ -14,24 +14,22 @@ public class ExampleTemplateDecorator {
 
 	public static void main(String[] args) throws NoAssignmentDefinedException {
 		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/assignments/decorator/code/");
-		DecoratorTemplate staticTemplate = new DecoratorTemplateStatic(assignmentOutput);
-		
+
+		printResults("Static", new DecoratorTemplateStatic(assignmentOutput));
+		System.out.println();
+		printResults("Dynamic", new DecoratorTemplateDynamic(assignmentOutput));
+	}
+	
+	private static void printResults(String type, DecoratorTemplate template) throws NoAssignmentDefinedException{
 		ADLReader adlReader = new ADLReader("./cases/assignments/decorator/decorator.adl");
-		
-		setDefinition(staticTemplate, adlReader);
-		Evaluations staticEvaluations = staticTemplate.evaluate();
-		System.out.println("Static evaluation");
-		staticEvaluations.printTotalList();
-		System.out.println("Total points:" + staticEvaluations.getTotalPoints());
-		
-		
-		DecoratorTemplate dynamicTemplate = new DecoratorTemplateDynamic(assignmentOutput);
-		setDefinition(dynamicTemplate, adlReader);
-		Evaluations dynamicEvaluations = dynamicTemplate.evaluate();
-		System.out.println("Dynamic evaluation");
+
+		setDefinition(template, adlReader);
+		Evaluations dynamicEvaluations = template.evaluate();
+		System.out.println(type + " evaluation");
 		dynamicEvaluations.printTotalList();
 		System.out.println("Total points:" + dynamicEvaluations.getTotalPoints());
 	}
+	
 
 	private static void setDefinition(DecoratorTemplate decoratorTemplate, ADLReader adlReader) {
 		decoratorTemplate.setComponent(adlReader.getValue("Component"), adlReader.getValue("ComponentMethod"));
