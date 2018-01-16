@@ -10,9 +10,9 @@ import nl.alexvanmanen.capta.model.Criterion;
 import nl.alexvanmanen.capta.model.Evaluation;
 import nl.alexvanmanen.capta.model.Evaluations;
 
-public class DecoratorTemplate extends nl.alexvanmanen.capta.DecoratorTemplate {
+public class DecoratorTemplateDynamic extends nl.alexvanmanen.capta.DecoratorTemplate {
 
-	public DecoratorTemplate(AssignmentOutput assignmentOutput) {
+	public DecoratorTemplateDynamic(AssignmentOutput assignmentOutput) {
 		super(assignmentOutput);
 	}
 

@@ -1,0 +1,10 @@
+Template = "Decorator"
+Component = "Pizza"
+ComponentMethod = "getPrice"
+ConcreteComponents = "Classic", "CheesyCrust", "FreshPan", "Italian" 
+Decorator = "Ingredient"
+ConcreteDecorators = "Pinneapple", "Ham", "Mushroom"
+Executions = "Classic", "Ham", "Pinneapple”; "Italian", "Mushroom", "Mushroom"
+ExecutionClass = "Start"
+ExecutionMethod = “main”
+ExpectedOutput = "8.75","9.3"

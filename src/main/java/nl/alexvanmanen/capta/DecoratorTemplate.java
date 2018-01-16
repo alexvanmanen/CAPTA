@@ -73,7 +73,7 @@ public abstract class DecoratorTemplate {
 	}
 	
 	
-	public void setExecutionClass(String classToExecute) {
+	public void setExecutionClass(String classToExecuteName) {
 		this.classToExecuteName = classToExecuteName;
 	}
 	
