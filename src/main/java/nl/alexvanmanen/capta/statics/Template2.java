@@ -20,8 +20,8 @@ public class Template2 extends nl.alexvanmanen.capta.Template2 {
 	}
 
 	public Evaluations evaluate() {
-		ADLReader reader = new ADLReader();
-		List<Exp> list = reader.readFile(adlFile);
+		ADLReader reader = new ADLReader(adlFile);
+		List<Exp> list = reader.readFile();
 
 		Assignment assignment = generateAssignment(list);
 

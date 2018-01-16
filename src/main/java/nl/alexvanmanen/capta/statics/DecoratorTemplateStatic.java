@@ -13,11 +13,11 @@ import nl.alexvanmanen.capta.visitor.ClassExtendsVisitor;
 import nl.alexvanmanen.capta.visitor.ClassMethodVisitor;
 import nl.alexvanmanen.capta.visitor.DecoratorExecutionVisitor;
 
-public class DecoratorTemplate extends nl.alexvanmanen.capta.DecoratorTemplate {
+public class DecoratorTemplateStatic extends nl.alexvanmanen.capta.DecoratorTemplate {
 
 
 
-	public DecoratorTemplate(AssignmentOutput assignmentOutput) {
+	public DecoratorTemplateStatic(AssignmentOutput assignmentOutput) {
 		super(assignmentOutput);
 	}
 
@@ -70,6 +70,8 @@ public class DecoratorTemplate extends nl.alexvanmanen.capta.DecoratorTemplate {
 			as.add(criterion3);
 		}
 	}
+
+
 	
 
 }

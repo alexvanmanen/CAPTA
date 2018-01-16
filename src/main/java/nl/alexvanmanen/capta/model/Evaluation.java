@@ -2,11 +2,11 @@ package nl.alexvanmanen.capta.model;
 
 public class Evaluation implements Comparable<Evaluation>{
 	public Criterion criterion;
-	public boolean satifies;
+	public boolean satisfies;
 	
 	public Evaluation(Criterion criterion, boolean statifies) {
 		this.criterion = criterion;
-		this.satifies = statifies;
+		this.satisfies = statifies;
 		
 	}
 	

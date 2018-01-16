@@ -20,13 +20,6 @@ public class DecoratorTemplate extends nl.alexvanmanen.capta.DecoratorTemplate {
 		
 		String feedback = "";
 
-
-
-		String className = "Start";
-		String printed1 = "8.75";
-		String printed2 = "9.3";
-		String methodName = "main";
-		
 		Criterion criterion2 = new Criterion();
 		criterion2.description = "+5 First pizza price is printed\n";
 		criterion2.points = 5;
@@ -42,19 +35,20 @@ public class DecoratorTemplate extends nl.alexvanmanen.capta.DecoratorTemplate {
 		evaluations.add(new Evaluation(criterion2, false));
 		evaluations.add(new Evaluation(criterion3, false));
 		
-
+		
 		
 		for (Class c : 	assignmentOutput.getClassFiles()) {
-			if (c.getName().contains(className)) {
-				Method main = new MethodsRetriever().getMethod(c, methodName);
+			if (c.getName().contains(classToExecuteName)) {
+				Method main = new MethodsRetriever().getMethod(c, methodToExecute);
 				if (main != null) {
 					MethodExecutor methodExecutor = new MethodExecutor(c, main);
 					String consoleOutput = new TestHelper().getConsoleOutput(methodExecutor);
-					if (consoleOutput.contains(printed2)) {
+					
+					if (consoleOutput.contains(outputList.get(0))) {
 						list.add(criterion2);
 					}	
 					
-					if (consoleOutput.contains(printed1)) {
+					if (consoleOutput.contains(outputList.get(1))) {
 						list.add(criterion3);
 					}
 				}

@@ -31,7 +31,7 @@ public class Evaluations {
 			List<Evaluation> list = new ArrayList<Evaluation>(evaluationSet);
 			Collections.sort(list);
 			for(Evaluation e: list){
-				if(e.satifies){
+				if(e.satisfies){
 					System.out.print(" - "+ e.criterion.points + " - " + e.criterion.description.replace("\n", ""));
 				}
 			}
@@ -40,10 +40,16 @@ public class Evaluations {
 		}
 	}
 	
+	public void printTotalList(){
+		for(Evaluation e: evaluationSet){
+				System.out.println(e.satisfies +" - "+ e.criterion.points + " - " + e.criterion.description.replace("\n", ""));
+		}
+	}
+	
 	public void checkIfCriteriaAreMet(List<Criterion> list){
 		for(Evaluation e: evaluationSet){
 			if(list.contains(e.criterion)){
-				e.satifies = true;
+				e.satisfies = true;
 			}
 		}
 	}
@@ -54,7 +60,7 @@ public class Evaluations {
 	
 	public boolean areAllEvaluationsSatisfied(){
 		for(Evaluation e: evaluationSet){
-			if(!e.satifies){
+			if(!e.satisfies){
 				return false;
 			}
 		}
@@ -64,7 +70,7 @@ public class Evaluations {
 	public int getTotalPoints(){
 		int total = 0;
 		for(Evaluation e: evaluationSet){
-			if(e.satifies){
+			if(e.satisfies){
 				total += e.criterion.points;
 			}
 		}
