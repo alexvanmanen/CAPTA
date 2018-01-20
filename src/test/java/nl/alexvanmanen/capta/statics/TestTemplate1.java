@@ -3,12 +3,12 @@ package nl.alexvanmanen.capta.statics;
 import java.io.FileNotFoundException;
 
 import junit.framework.TestCase;
+import nl.alexvanmanen.capta.helper.ADLReader;
 import nl.alexvanmanen.capta.model.AssignmentOutput;
 import nl.alexvanmanen.capta.model.Evaluations;
 
 public class TestTemplate1 extends TestCase {
 
-	private String assignmentDirectory = "./cases/assignments/printvariable/code";
 
 	protected void setUp() throws Exception {
 		super.setUp();
@@ -16,16 +16,16 @@ public class TestTemplate1 extends TestCase {
 
 	public void test() throws FileNotFoundException {
 
-		AssignmentOutput assignmentOutput = new AssignmentOutput(assignmentDirectory);
-		Template1 template1Statically = new Template1(assignmentOutput.getCompilationUnits());
-		String className = "Hello";
-		String methodName = "main";
-		template1Statically.setSignature(className, methodName);
-		template1Statically.setVariable("String", "name");
-		template1Statically.setWhatIsBeingPrinted("Hello");
-
-		Evaluations evaluations = template1Statically.evaluate();
-		evaluations.print();
-
+		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/assignments/printvariable/code");
+		String adl = "./cases/assignments/printvariable/test.adl";
+		ADLReader adlReader = new ADLReader(adl);
+		
+		
+		Template1 template = new Template1(assignmentOutput);
+		template.setSignature(adlReader.getValue("ClassName"), adlReader.getValue("MethodName"));
+		template.setVariable(adlReader.getValue("VariableType"), adlReader.getValue("VariableName"));
+		template.setWhatIsBeingPrinted(adlReader.getValue("Printed"));
+		Evaluations evaluations = template.evaluate();
+		assertEquals(5, evaluations.getTotalPoints());
 	}
 }

@@ -23,6 +23,8 @@ public class TestTemplate2 extends TestCase {
 		Template2 template = new Template2(adl, assignmentOutput);
 		
 		
+		
+		
 		Assert.assertEquals(true, template.evaluate().areAllEvaluationsSatisfied());
 				
 
