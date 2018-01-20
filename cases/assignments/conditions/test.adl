@@ -1,0 +1,5 @@
+INPUT != 50 #The number is not equal to 50
+INPUT > 10 #The number is greater than 10
+INPUT > 1 AND INPUT < 9 #The number is greater than 1 and smaller than 9
+INPUT % 3 == 0 #The number is a multiple of 3 or 4
+INPUT % 4 == 0 #The number is a multiple of 3 or 4

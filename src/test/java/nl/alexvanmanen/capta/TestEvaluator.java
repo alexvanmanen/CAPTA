@@ -31,7 +31,7 @@ public class TestEvaluator extends TestCase {
 		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
 		Evaluation actual = new Evaluator().evaluate(criterion, assignmentOutput);
 		
-		Assert.assertEquals(true, actual.satifies);
+		Assert.assertEquals(true, actual.satisfies);
 	}
 	
 	public void testEvaluationAssignment() {
@@ -50,7 +50,7 @@ public class TestEvaluator extends TestCase {
 		Evaluations actual = new Evaluator().evaluate(assignment, assignmentOutput);
 		
 		
-		Assert.assertEquals(true, actual.getFirst().satifies);
+		Assert.assertEquals(true, actual.getFirst().satisfies);
 	}
 	
 	
@@ -69,7 +69,7 @@ public class TestEvaluator extends TestCase {
 		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
 		
 		Evaluations actual = new Evaluator().evaluate(assignment, assignmentOutput);
-		Assert.assertEquals(false, actual.getFirst().satifies);
+		Assert.assertEquals(false, actual.getFirst().satisfies);
 	}
 	
 	public void testEvaluationAssignments() {
@@ -119,7 +119,7 @@ public class TestEvaluator extends TestCase {
 
 		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
 		Evaluation actual = new Evaluator().evaluate(criterion, assignmentOutput);
-		Assert.assertEquals(true, actual.satifies);
+		Assert.assertEquals(true, actual.satisfies);
 	}
 	
 
