@@ -1,0 +1,7 @@
+Template = "PrintVariable"
+ClassName = "Hello"
+MethodName = "main"
+VariableType = "String"
+VariableName = "name"
+Printed = "Hello"
+
