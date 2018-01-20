@@ -15,6 +15,8 @@ import nl.alexvanmanen.capta.visitor.VariableVisitor;
 
 public class TestEvaluator extends TestCase {
 
+	private String assignmentDirectory = "./cases/assignments/printvariable/code";
+	
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
@@ -28,7 +30,7 @@ public class TestEvaluator extends TestCase {
 		criterion.description = "There is a variable " + name + " of the type " + type + "\n";
 		criterion.points = 2;
 
-		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
+		AssignmentOutput assignmentOutput = new AssignmentOutput(assignmentDirectory);
 		Evaluation actual = new Evaluator().evaluate(criterion, assignmentOutput);
 		
 		Assert.assertEquals(true, actual.satisfies);
@@ -46,7 +48,7 @@ public class TestEvaluator extends TestCase {
 		criterion.points = 2;
 
 		assignment.add(criterion);
-		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
+		AssignmentOutput assignmentOutput = new AssignmentOutput(assignmentDirectory);
 		Evaluations actual = new Evaluator().evaluate(assignment, assignmentOutput);
 		
 		
@@ -66,7 +68,7 @@ public class TestEvaluator extends TestCase {
 		criterion.points = 2;
 
 		assignment.add(criterion);
-		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
+		AssignmentOutput assignmentOutput = new AssignmentOutput(assignmentDirectory);
 		
 		Evaluations actual = new Evaluator().evaluate(assignment, assignmentOutput);
 		Assert.assertEquals(false, actual.getFirst().satisfies);
@@ -100,7 +102,7 @@ public class TestEvaluator extends TestCase {
 		assignment.add(criterion2);
 		assignment.add(criterion3);
 
-		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
+		AssignmentOutput assignmentOutput = new AssignmentOutput(assignmentDirectory);
 		Evaluations actual = new Evaluator().evaluate(assignment, assignmentOutput);
 		
 		Assert.assertEquals(true, actual.areAllEvaluationsSatisfied());
@@ -114,10 +116,10 @@ public class TestEvaluator extends TestCase {
 
 		Exp expression = new Exp("INPUT","!=", "50",2);
 		criterion.visitor = new BinaryExpressionVisitor(expression);
-		criterion.description = "There is a expression "+ expression +"\n";
+		criterion.description = "There is an expression "+ expression +"\n";
 		criterion.points = 2;
 
-		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
+		AssignmentOutput assignmentOutput = new AssignmentOutput(assignmentDirectory);
 		Evaluation actual = new Evaluator().evaluate(criterion, assignmentOutput);
 		Assert.assertEquals(true, actual.satisfies);
 	}

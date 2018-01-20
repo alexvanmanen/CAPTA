@@ -8,13 +8,15 @@ import nl.alexvanmanen.capta.model.Evaluations;
 
 public class TestTemplate1 extends TestCase {
 
+	private String assignmentDirectory = "./cases/assignments/printvariable/code";
+
 	protected void setUp() throws Exception {
 		super.setUp();
 	}
 
 	public void test() throws FileNotFoundException {
 
-		AssignmentOutput assignmentOutput = new AssignmentOutput("./cases/");
+		AssignmentOutput assignmentOutput = new AssignmentOutput(assignmentDirectory);
 		Template1 template1Statically = new Template1(assignmentOutput.getCompilationUnits());
 		String className = "Hello";
 		String methodName = "main";
