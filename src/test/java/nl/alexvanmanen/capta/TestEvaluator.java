@@ -118,7 +118,8 @@ public class TestEvaluator extends TestCase {
 		criterion.visitor = new BinaryExpressionVisitor(expression);
 		criterion.description = "There is an expression "+ expression +"\n";
 		criterion.points = 2;
-
+		
+		assignmentDirectory = "./cases/assignments/conditions/code";
 		AssignmentOutput assignmentOutput = new AssignmentOutput(assignmentDirectory);
 		Evaluation actual = new Evaluator().evaluate(criterion, assignmentOutput);
 		Assert.assertEquals(true, actual.satisfies);
