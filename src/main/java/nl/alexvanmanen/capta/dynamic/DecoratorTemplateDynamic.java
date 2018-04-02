@@ -87,5 +87,9 @@ public class DecoratorTemplateDynamic extends nl.alexvanmanen.capta.DecoratorTem
 		}
 		return null;
 	}
+	
+	public String getType(){
+		return "dynamic";
+	}
 
 }

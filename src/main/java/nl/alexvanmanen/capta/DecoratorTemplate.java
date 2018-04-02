@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import nl.alexvanmanen.capta.helper.ADLReader;
 import nl.alexvanmanen.capta.model.AssignmentOutput;
 import nl.alexvanmanen.capta.model.Evaluations;
 
@@ -17,14 +18,11 @@ public abstract class DecoratorTemplate {
 	protected Set<String> concreteDecorators = new HashSet<String>();
 	protected Set<String> concreteComponents = new HashSet<String>();
 	protected AssignmentOutput assignmentOutput;
-//	protected String methodName;
 	protected Map<String, String[]> executionList = new HashMap<String, String[]>();
-	protected String classToExecuteName;// = "Start";
+	protected String classToExecuteName;
 	protected String methodToExecute;
-//	protected String printed1 = "8.75";
-//	protected String printed2 = "9.3";
 	protected List<String> outputList = new ArrayList<String>();
-	protected String methodName;// = "main";
+	protected String methodName;
 	
 	
 	public DecoratorTemplate(AssignmentOutput assignmentOutput) {
@@ -84,6 +82,23 @@ public abstract class DecoratorTemplate {
 	public void addExpectedOutput(List<String> expectedOutput){
 		outputList.addAll(expectedOutput);
 	}
+	
+	public void setDefinition(ADLReader adlReader) {
+		this.setComponent(adlReader.getValue("Component"), adlReader.getValue("ComponentMethod"));
+		this.addConcreteComponents(adlReader.getValues("ConcreteComponents"));
+		this.setDecorator(adlReader.getValue("Decorator"));
+		this.addConcreteDecarators(adlReader.getValues("ConcreteDecorators"));
+		
+		for(List<String> execution: adlReader.getListOfValues("Executions")){
+			this.addExecutions(execution);
+		}
+
+		this.setExecutionClass(adlReader.getValue("ExecutionClass"));
+		this.setExecutionMethod(adlReader.getValue("ExecutionMethod"));
+		this.addExpectedOutput(adlReader.getValues("ExpectedOutput"));
+	}
 
 	public abstract Evaluations evaluate() throws NoAssignmentDefinedException;
+	
+	public abstract String getType();
 }
